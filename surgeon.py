@@ -63,9 +63,11 @@ def mouseEvent(type, posx, posy):
     #surgeon_psn = (low_psn, high_psn)
     #print(surgeon_process)
     #print(surgeon_psn)
+    # maybe change the first param "source"
+    # Maybe get rid of the mousebuttonleft
     theEvent = CGEventCreateMouseEvent(None, type, (posx, posy), kCGMouseButtonLeft)
-    #CGEventPost(kCGHIDEventTap, theEvent)
-    CGEventPostToPSN(surgeon_psn, theEvent)
+    CGEventPost(kCGHIDEventTap, theEvent)
+    #CGEventPostToPSN(surgeon_psn, theEvent)
 
 
 def mousemove(posx, posy):
@@ -98,8 +100,8 @@ class SurgeonListener(Leap.Listener):
             cur_x, cur_y = m.position()
             if position.y < 200:
                 pass
-                #m.click(x_dim/2, y_dim/2, 1)
-                mouseclick(x_dim/2, y_dim/2)
+                m.click(x_dim/2, y_dim/2, 1)
+                #mouseclick(x_dim/2, y_dim/2)
 
             if position.x < 0:
                 print(cur_x)
@@ -109,8 +111,8 @@ class SurgeonListener(Leap.Listener):
                 #autopy.mouse.smooth_move(0, 0)
 
             if position.x > 0:
-                mousemove(cur_x+1, cur_y)
-                #autopy.mouse.smooth_move(int(x_dim2)-1, int(y_dim2)-1)
+                #mousemove(cur_x+1, cur_y)
+                autopy.mouse.smooth_move(int(x_dim2)-1, int(y_dim2)-1)
                 print(cur_x)
                 #moveMouse(x_dim, int(cur_y))
                 #m.move(cur_x+1, cur_y)
